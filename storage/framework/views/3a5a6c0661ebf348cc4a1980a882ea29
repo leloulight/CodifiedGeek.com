@@ -1,0 +1,27 @@
+
+<?php $__env->startSection('titleheader'); ?>
+    Edit/Add Education
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <h1>Educational Manager <small><a href="<?php echo e(action('EducationsController@create')); ?>" title="Add Another Education"><span class="glyphicon glyphicon-plus-sign"></span></a></small></h1>
+    <hr />
+    <?php foreach($educations as $education): ?>
+        <article>
+            <h2>
+                <a href="<?php echo e(action('EducationsController@edit',[$education->id])); ?>"><small><span class="glyphicon glyphicon-edit"></span></small></a>
+                <?php echo e($education->schoolname); ?>
+
+
+            </h2>
+            <a class="text-danger remove-item-confirm" data-toggle="modal" data-target="#confirm-delete-modal" data-href="<?php echo e(action('EducationsController@destroy',[$education->id])); ?>" href=""><span class="glyphicon glyphicon-remove"></span> Delete</a>
+            <hr />
+            <h4><?php echo e($education->degree); ?> | <?php echo e($education->city); ?>, <?php echo e($education->state); ?></h4>
+            <p><?php echo e($education->startyear); ?> - <?php echo e($education->currentlyenrolled == 1 ? "Expected Graduation " . date("Y", strtotime($education->graduationyear)):date("Y", strtotime($education->graduationyear))); ?> </p>
+            <p><?php echo e($education->minor); ?></p>
+
+        </article>
+    <?php endforeach; ?>
+    <?php echo $__env->make('partials.confirmdelete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

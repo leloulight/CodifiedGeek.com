@@ -1,0 +1,17 @@
+/*
+Style sheet for freeze panes
+*/
+table.jFreezePanes {
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 9999;
+}
+table.jFreezePanes tr th {
+    background-color:#fff;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    html {
+        margin-left:1px;
+    }
+}

@@ -1,0 +1,14 @@
+<?php $__env->startSection('content'); ?>
+    <h1>Edit: <?php echo e($room->room); ?> - <?php echo e($room->project); ?></h1>
+    <hr />
+    <ul>
+        <?php echo Form::model($room,['method' => 'PATCH', 'action' => ['RoomsController@update', $room->id]]); ?>
+
+        <?php echo $__env->make('rooms.form', ['submitButtonText'=>'Update Room', 'currentForm' => 'edit'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo Form::close(); ?>
+
+    </ul>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

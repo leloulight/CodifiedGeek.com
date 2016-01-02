@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $__env->yieldContent('title'); ?><?php echo $__env->yieldContent('titleheader'); ?></title>
+
+    <script type="text/javascript" src="<?php echo e(asset('js/jquery.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/jquery-ui.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/jquery.validate.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/jquery-validate.bootstrap-tooltip.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/confirm-delete.js')); ?>"></script>
+    <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/bootstrap-theme.min.css')); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css')); ?>" />
+    <?php echo $__env->yieldContent('scripts'); ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('div.alert').delay(3000).slideUp(300);//slide the message back up once displayed
+        });
+    </script>
+
+</head>
+<body>
+<?php echo $__env->make("layouts.nav.admin", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container" style="margin-top:50px">
+    <h1><?php echo $__env->yieldContent('title'); ?></h1>
+    <?php echo $__env->make('errors.list', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php if(Session::has('success')): ?>
+        <div class="row">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <?php echo Session::get('success'); ?>
+
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if(Session::has('error')): ?>
+        <div class="row">
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <?php echo Session::get('error'); ?>
+
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="row">
+        <?php echo $__env->yieldContent('content'); ?>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text-muted"><strong>&copy; Codified Geek <?php echo e(date("Y",time())); ?></strong></p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?php $__env->startSection('content'); ?>
+    <h1>Backoffice Users</h1>
+    <hr />
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Disable</th>
+        </tr>
+    <?php foreach($users as $user): ?>
+           <tr>
+               <?php echo Form::model($user,['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]); ?>
+
+               <td><a href="<?php echo e(action('UsersController@edit',[$user->id])); ?>"><?php echo e($user->name); ?></a></td>
+               <td><a href="<?php echo e(action('UsersController@edit',[$user->id])); ?>"><?php echo e($user->email); ?></a></td>
+               <td><a href="<?php echo e(action('UsersController@edit',[$user->id])); ?>"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+               <td><button style="background-color:inherit; border:none; box-shadow:none; color:#337ab7; padding:0;" type="submit" class=""><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+               <?php echo Form::close(); ?>
+
+           </tr>
+    <?php endforeach; ?>
+    </table>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

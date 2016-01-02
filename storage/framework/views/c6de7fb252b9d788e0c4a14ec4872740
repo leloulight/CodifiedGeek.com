@@ -1,0 +1,18 @@
+<?php $__env->startSection('title'); ?>
+    Create a new Job Entry
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+
+    <hr />
+    <?php echo Form::open(['url' => 'jobs','name'=>'job', 'id'=>'jobform']); ?>
+
+    <?php echo $__env->make('jobs.form', ['submitButtonText'=>'Create Job'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

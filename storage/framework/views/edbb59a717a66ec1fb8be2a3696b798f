@@ -1,0 +1,18 @@
+<?php $__env->startSection('title'); ?>
+    Edit Education
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+
+    <hr />
+    <?php echo Form::model($education,['method' => 'PATCH', 'action' => ['EducationsController@update', $education->id],'name'=>'education', 'id'=>'educationform']); ?>
+
+        <?php echo $__env->make('educations.form', ['submitButtonText'=>'Update Education'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

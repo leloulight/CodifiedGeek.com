@@ -1,0 +1,30 @@
+<div class="form-group">
+    <?php echo Form::label('room', 'Engagement Number:'); ?>
+
+    <?php echo Form::text('room', null, ['class' => 'form-control']); ?>
+
+</div>
+<?php if($currentForm !== 'edit'): ?>
+    <div class="form-group">
+        <?php echo Form::label('room_confirmation', 'Confirm Engagement Number:'); ?>
+
+        <?php echo Form::text('room_confirmation', null, ['class' => 'form-control']); ?>
+
+    </div>
+<?php else: ?>
+    <div class="form-group">
+        <?php echo Form::hidden('room_confirmation', $room->room); ?>
+
+    </div>
+<?php endif; ?>
+<div class="form-group">
+    <?php echo Form::label('project', 'Room Name'); ?>
+
+    <?php echo Form::text('project', null, ['class' => 'form-control']); ?>
+
+</div>
+<div class="form-group">
+    <?php echo Form::submit($submitButtonText, ['class' => 'btn btn-primary']); ?>
+
+    <a href="<?php echo url('rooms'); ?>" class="btn btn-danger">Cancel</a>
+</div>

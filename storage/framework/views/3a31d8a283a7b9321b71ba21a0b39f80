@@ -1,0 +1,21 @@
+<?php $__env->startSection('title'); ?>
+    <h1>Create a new Achievement for <?php echo $job->jobtitle; ?></h1>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+
+    <hr />
+    <?php echo Form::open(['url' => 'achievements','name'=>'achievement', 'id'=>'achievementform']); ?>
+
+    <div class="form-group">
+        <?php echo Form::hidden('job_id', $job->id); ?>
+
+    </div>
+    <?php echo $__env->make('achievements.form', ['submitButtonText'=>'Create Achievement'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

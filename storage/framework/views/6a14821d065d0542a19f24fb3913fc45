@@ -1,0 +1,14 @@
+<?php $__env->startSection('content'); ?>
+    <h1>Create New Backoffice Room</h1>
+    <hr />
+    <ul>
+        <?php echo Form::open(['url' => 'rooms']); ?>
+
+        <?php echo $__env->make('rooms.form', ['submitButtonText'=>'Create Room', 'currentForm' => 'create'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo Form::close(); ?>
+
+    </ul>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,111 @@
+<?php $__env->startSection('titleheader'); ?>
+    Resume Editor
+    <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<!-- Joel Mann Summary -->
+
+
+<!-- Jobs -->
+    <div class="cg-section">
+        <h2><span class="glyphicon glyphicon-briefcase"></span> Experience<small><a href="<?php echo e(action('JobsController@create')); ?>" title="Add Another Job"> <span class="glyphicon glyphicon-plus-sign"></span> New</a></small></h2>
+        <hr />
+        <?php foreach($jobs as $job): ?>
+            <article>
+                <h3>
+                    <a class="text-primary" href="<?php echo e(action('JobsController@edit', [$job->id])); ?>"><small><span class="glyphicon glyphicon-edit"></span></small></a>
+                    <?php echo e($job->company); ?>
+
+                    <a class="pull-right btn btn-danger remove-item-confirm" data-toggle="modal" data-target="#confirm-delete-modal" data-href="<?php echo e(action('AchievementsController@destroy',[$job->id])); ?>" href=""><span class="glyphicon glyphicon-trash"></span> Delete Job</a>
+                </h3>
+                <hr />
+                <h4><?php echo e($job->jobtitle); ?></h4>
+
+                <?php echo $test = "";
+                    if($job->currentlyemployed === 1) {
+                        $endDate = strtotime(date('Y-m-d',time()));
+                    } else {
+                        $endDate = strtotime($job->enddate);
+                    }
+                    $days = (($endDate - strtotime($job->startdate)) / 86400);
+                    $time = $days/365;
+                    $months = $time/12;//get the number of months
+                    //next we need the years/months/days
+                    if($time >= 1) {
+                        //multiple years
+                        $time = round($time);
+                        if($time > 1) {
+                            $time .= " years";
+                        } else {
+                            $time .= " year";
+                        }
+                    } else {
+                        //multiple months
+                        $time = round($months);
+                        if($time > 1) {
+                            $time .= " months";
+                        } else {
+                            $time = "1 month";
+                        }
+                    }; ?>
+
+                <p><?php echo e(date("F Y", strtotime($job->startdate))); ?> - <?php echo e($job->currentlyemployed == 1 ? "Present":date("F Y", strtotime($job->enddate))); ?> (<?php echo e($time); ?>) - <?php echo e($job->city); ?>, <?php echo e($job->state); ?></p>
+                <p><?php echo e($job->jobdescription); ?></p>
+                <h4>Achievements <a class="text-success" href="<?php echo e(action('AchievementsController@create',[$job->id])); ?>"><span class="glyphicon glyphicon-plus-sign"></span> New</></a></h4>
+                <?php if(empty($job->achievements[0])): ?>
+                    <p>There are no achievements.</p>
+                <?php endif; ?>
+                <ul>
+                    <?php foreach($job->achievements as $achievement): ?>
+                        <li>
+                            <?php echo $achievement->description; ?> <?php if($achievement->url): ?> - <a href="<?php echo $achievement->url; ?>"><?php echo $achievement->url; ?></a> <?php endif; ?>
+                            <a href="<?php echo e(action('AchievementsController@edit',[$achievement->id])); ?>"><small><span class="glyphicon glyphicon-edit"></span></a></small>
+                            <a class="text-danger remove-item-confirm" data-toggle="modal" data-target="#confirm-delete-modal" data-href="<?php echo e(action('AchievementsController@destroy',[$achievement->id])); ?>" href="" title="Delete the Achievement"><span class="glyphicon glyphicon-remove"></span> Delete</a>                        </li>
+                    <?php endforeach; ?>
+                </ul>
+
+            </article>
+            <?php endforeach; ?>
+    </div>
+
+<!-- Education -->
+<div class="cg-section">
+    <h2><span class="glyphicon glyphicon-education"></span> Education<small><a href="<?php echo e(action('EducationsController@create')); ?>" title="Add Another Education"> <span class="glyphicon glyphicon-plus-sign"></span> New</a></small></h2>
+    <hr />
+    <?php foreach($educations as $education): ?>
+        <article>
+            <h3>
+                <a href="<?php echo e(action('EducationsController@edit',[$education->id])); ?>"><small><span class="glyphicon glyphicon-edit"></span></small></a>
+                <?php echo e($education->schoolname); ?>
+
+                <small><a class="text-danger remove-item-confirm" data-toggle="modal" data-target="#confirm-delete-modal" data-href="<?php echo e(action('EducationsController@destroy',[$education->id])); ?>" href=""><span class="glyphicon glyphicon-remove"></span> Delete</a></small>
+            </h3>
+
+            <h4><?php echo e($education->degree); ?> | <?php echo e($education->city); ?>, <?php echo e($education->state); ?></h4>
+            <p><?php echo e($education->startyear); ?> - <?php echo e($education->currentlyenrolled === 1 ? "Expected Graduation " . $education->graduationyear:$education->graduationyear); ?> </p>
+            <p><?php echo e($education->minor); ?></p>
+
+        </article>
+   <?php endforeach; ?>
+</div>
+<!-- Skills -->
+<div class="cg-section">
+   <div class="pull-right"><a class="text-right btn btn-primary" href="<?php echo e(action('SkillCategoriesController@index')); ?>"><span class="glyphicon glyphicon-th"></span> Skill Manager</a></div>
+        <h2><span class="glyphicon glyphicon-wrench"></span> Technical Skills <small><a href="<?php echo e(action('SkillsController@create')); ?>" title="Add Another Skill"><span class="glyphicon glyphicon-plus-sign"></span> New</a></small> </h2>
+        <hr />
+
+
+        <?php foreach($skillcategories as $category): ?>
+            <h3><?php echo e($category->title); ?></h3>
+            <ul>
+
+                <?php foreach($category->skills as $skill): ?>
+                    <li><?php echo e($skill->skilltitle); ?> - <?php echo e($skill->yearsexp); ?> Years <a class="text-primary" href="<?php echo e(action('SkillsController@edit',[$skill->id])); ?>"><small><span class="glyphicon glyphicon-edit"></span></small></a> <a class="text-danger remove-item-confirm" data-toggle="modal" data-target="#confirm-delete-modal" data-href="<?php echo e(action('SkillsController@destroy',[$skill->id])); ?>" href=""><span class="glyphicon glyphicon-trash"></span> Delete</a></li>
+                <?php endforeach; ?>
+
+            </ul>
+        <?php endforeach; ?>
+</div>
+        <?php echo $__env->make('partials.confirmdelete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
