@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', ['uses' => 'AdminController@index']);
+//Route::get('/', ['uses' => 'AdminController@index']);
 
 Route::resource('articles', 'ArticlesController');
 
