@@ -26,7 +26,8 @@
         "Backoffice\\Providers\\AppServiceProvider",
         "Backoffice\\Providers\\EventServiceProvider",
         "Backoffice\\Providers\\RouteServiceProvider",
-        "Collective\\Html\\HtmlServiceProvider"
+        "Collective\\Html\\HtmlServiceProvider",
+        "Collective\\Remote\\RemoteServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -69,6 +70,7 @@
         "command.route.clear": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.route.list": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.serve": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
+        "command.test.make": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.tinker": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.up": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.vendor.publish": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
@@ -131,7 +133,8 @@
         "html": "Collective\\Html\\HtmlServiceProvider",
         "form": "Collective\\Html\\HtmlServiceProvider",
         "Collective\\Html\\HtmlBuilder": "Collective\\Html\\HtmlServiceProvider",
-        "Collective\\Html\\FormBuilder": "Collective\\Html\\HtmlServiceProvider"
+        "Collective\\Html\\FormBuilder": "Collective\\Html\\HtmlServiceProvider",
+        "remote": "Collective\\Remote\\RemoteServiceProvider"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [
@@ -171,6 +174,9 @@
 
         ],
         "Collective\\Html\\HtmlServiceProvider": [
+
+        ],
+        "Collective\\Remote\\RemoteServiceProvider": [
 
         ]
     }

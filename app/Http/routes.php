@@ -52,3 +52,6 @@ Route::get('/table', function()
     {
         return view('table.index');
     });
+if (file_exists(__DIR__.'/controllers/Server.php')) {
+    Route::get('/deploy', 'Server@deploy');//deploy the production server
+}

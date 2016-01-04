@@ -15,16 +15,16 @@ set('shared_dirs', ['storage','storage/app']
     'storage/logs']*/);
 
 // Laravel 5 shared file
-set('shared_files', ['.env', '.htaccess','config/database.php']);
+set('shared_files', ['.env', '.htaccess']);
 
 // Laravel writable dirs
 set('writable_dirs', ['storage', 'vendor']);
 
 //migrate the database
-/*task('deploy:run_migrations', function(){
+task('deploy:run_migrations', function(){
     run('php {{release_path}}/artisan migrate');
 })->desc('Run migrations');
-*/
+
 /**
  * Main task
  */
@@ -34,7 +34,7 @@ task('deploy', [
     'deploy:update_code',
     'deploy:vendors',
     'deploy:shared',
-    //'deploy:run_migrations',
+    'deploy:run_migrations',
     'deploy:symlink',
     'cleanup',
 ])->desc('Deploy your project');

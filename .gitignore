@@ -6,4 +6,6 @@
 config/database.php
 storage/framework/
 storage/logs/
+config/remote.php
+app/Http/Controllers/Server.php
 # Created by .ignore support plugin (hsz.mobi)

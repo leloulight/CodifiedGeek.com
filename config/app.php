@@ -137,14 +137,15 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */
         Backoffice\Providers\AppServiceProvider::class,
         Backoffice\Providers\EventServiceProvider::class,
         Backoffice\Providers\RouteServiceProvider::class,
-        //Illuminate\Html\HtmlServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Collective\Remote\RemoteServiceProvider::class,
 
     ],
 
@@ -195,6 +196,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Form' => Collective\Html\FormFacade::class,
+        'SSH' => Collective\Remote\RemoteFacade::class,
 
     ],
 
